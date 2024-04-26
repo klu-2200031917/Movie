@@ -1,0 +1,85 @@
+{% load static %}
+
+{% block body %}
+<style>
+    body {
+        font-family: Arial, sans-serif, Helvetica;
+        margin: 0;
+        background: url('{% static 'media/logoback.jpg' %}') top center no-repeat;
+        background-size: cover;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .register-container {
+        display: grid;
+        place-items: center;
+        background-color: rgba(255, 255, 255, 0); /* Transparent white color */
+    }
+
+    .register-card {
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.3); /* Transparent white color */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .register-form {
+        margin-top: 20px;
+    }
+
+    .register-form input[type="text"],
+    .register-form input[type="email"],
+    .register-form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .register-form button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .register-footer {
+        margin-top: 15px;
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="register-container">
+        <div class="register-card">
+            <div class="panel-body">
+                <h3>Register for an Account</h3>
+                {% if error_message %}
+                    <p><strong>{{ error_message }}</strong></p>
+                {% endif %}
+                <form class="register-form" role="form" action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% include 'web/form_template.html' %}
+                    <div class="form-group">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="register-footer">
+                Already have an account? <a href="{% url 'login' %}">Click here</a> to log in.
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

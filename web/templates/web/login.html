@@ -1,0 +1,93 @@
+{% load static %}
+
+
+{% block body %}
+<style>
+     body {
+            font-family: Arial, sans-serif,Helvetica;
+            margin: 0;
+            background: url('{% static 'media/logoback.jpg' %}') top center no-repeat;
+            background-size: cover;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+    .login-container {
+        display: grid;
+        place-items: center;
+        background-image: url('your-background-image.jpg'); /* Add the path to your background image */
+        background-size: cover;
+        background-position: center;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.3); /* Transparent white color */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-form {
+        margin-top: 20px;
+    }
+
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .login-form button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .login-footer {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+</style>
+<body>
+
+<div class="login-container">
+    <div class="login-card">
+        <div class="panel-body">
+            <h3>Log In</h3>
+            {% if error_message %}
+                <p><strong>{{ error_message }}</strong></p>
+            {% endif %}
+            <form class="login-form" role="form" action="#" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input id="id_username" maxlength="30" name="username" type="text" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input id="id_password" maxlength="30" name="password" type="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="login-footer">
+            Don't have an account? <a href="{% url 'signup' %}">Click here</a> to register.
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

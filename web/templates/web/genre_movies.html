@@ -1,0 +1,23 @@
+{% extends 'web/base.html' %}
+
+<!-- your_app/templates/your_app/genre_movies.html -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Genre Movies{% endblock %}</title>
+</head>
+<body>
+    <h1>Movies for {{ genre.name }}</h1>
+
+    {% if movies %}
+        <ul>
+            {% for movie in movies %}
+                <li>{{ movie.title }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No movies available for this genre.</p>
+    {% endif %}
+</body>
+</html>
